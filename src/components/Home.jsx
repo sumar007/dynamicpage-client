@@ -10,7 +10,7 @@ const Home = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://localhost:5000/api/v1/get-visible-banners"
+        "https://dynamicpage-server.onrender.com/api/v1/get-visible-banners"
       );
       if (!response.ok) {
         throw new Error("Something went wrong");

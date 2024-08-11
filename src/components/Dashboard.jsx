@@ -34,7 +34,7 @@ const Dashboard = () => {
   const fetchBanners = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/api/v1/get-banners");
+      const response = await fetch("https://dynamicpage-server.onrender.com/api/v1/get-banners");
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
@@ -62,7 +62,7 @@ const Dashboard = () => {
     e.preventDefault();
 
     try {
-        const response = await fetch(`http://localhost:5000/api/v1/update-banner/${currentBanner.id}`, {
+        const response = await fetch(`https://dynamicpage-server.onrender.com/api/v1/update-banner/${currentBanner.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

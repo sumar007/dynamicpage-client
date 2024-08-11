@@ -21,7 +21,7 @@ const CreateBanner = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:5000/api/v1/create-banner", {
+            const response = await fetch("https://dynamicpage-server.onrender.com/api/v1/create-banner", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
