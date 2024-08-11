@@ -84,6 +84,29 @@ const Dashboard = () => {
         console.error(error);
     }
 };
+//invisible banner
+const toggleBannerVisibility = async (banner) => {
+  const endpoint = banner.isVisible ? 
+      `https://dynamicpage-server.onrender.com/api/v1/invisible-banner/${banner.id}` :
+      `https://dynamicpage-server.onrender.com/api/v1/visible-banner/${banner.id}`;
+
+  try {
+      const response = await fetch(endpoint, {
+          method: 'PUT',
+      });
+
+      if (!response.ok) {
+          throw new Error('Something went wrong while updating the banner visibility.');
+      }
+
+      const data = await response.json();
+      console.log('Banner visibility updated:', data);
+      alert(`Banner ${banner.isVisible ? 'invisible' : 'visible'} now`);
+      fetchBanners();
+  } catch (error) {
+      console.error(error);
+  }
+};
 
   if (loading) return <h1>Loading ...</h1>;
   return (
@@ -93,6 +116,10 @@ const Dashboard = () => {
       <div>
         {banners.map((banner) => (
           <div key={banner.id} className="banner">
+            { banner.isVisible ?
+            <button onClick={() => toggleBannerVisibility(banner)}>Invisible</button> :
+            <button onClick={() => toggleBannerVisibility(banner)}>Visible</button>
+            }
             <h3><span style={{color:"black"}}>Description:</span> {banner.description}</h3>
             <p>Time: {banner.timer}</p>
             <p>Link: {banner.link}</p>
